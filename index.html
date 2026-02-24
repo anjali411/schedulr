@@ -57,7 +57,16 @@
           <input id="date" name="date" type="date" required />
 
           <label for="time">Preferred time</label>
-          <input id="time" name="time" type="time" required />
+          <input id="time" name="time" type="time" step="600" required />
+          <p class="subtext slots-help" id="slots-help" hidden>
+            Available 10-minute slots (±1 hour). Tap a slot to pick it.
+          </p>
+          <div
+            id="slot-options"
+            class="slot-options"
+            role="listbox"
+            aria-label="Available slot times"
+          ></div>
 
           <label for="reason">Reason for visit</label>
           <textarea
