@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr Vijay Chourdia Clinic | Book an Appointment</title>
+    <meta
+      name="description"
+      content="Book your appointment with Dr Vijay Chourdia. Select a time that works for you and receive a confirmation instantly."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <p class="eyebrow">Senior ENT Surgeon</p>
+        <h1>Book an appointment with Dr Vijay Chourdia</h1>
+        <p>
+          Choose your preferred date and time. We will confirm by email and add
+          your appointment to the clinic calendar.
+        </p>
+      </div>
+    </header>
+
+    <main class="container grid">
+      <section class="card" aria-labelledby="booking-title">
+        <h2 id="booking-title">Request appointment</h2>
+        <p class="subtext">
+          Fill out the form below. Submission connects to Google Calendar using
+          a secure Google Apps Script endpoint.
+        </p>
+
+        <form id="booking-form" novalidate>
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+
+          <label for="phone">Phone</label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="(555) 123-4567"
+            required
+          />
+
+          <label for="date">Preferred date</label>
+          <input id="date" name="date" type="date" required />
+
+          <label for="time">Preferred time</label>
+          <input id="time" name="time" type="time" required />
+
+          <label for="reason">Reason for visit</label>
+          <textarea
+            id="reason"
+            name="reason"
+            rows="4"
+            placeholder="Annual checkup, follow-up, etc."
+            required
+          ></textarea>
+
+          <label for="notes">Additional notes (optional)</label>
+          <textarea id="notes" name="notes" rows="3"></textarea>
+
+          <button type="submit" id="submit-btn">Submit request</button>
+          <p id="status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="card" aria-labelledby="alt-title">
+        <h2 id="alt-title">Instant booking (optional)</h2>
+        <p>
+          If your clinic uses Google Calendar appointment schedules, paste the
+          public booking link in <code>app.js</code> so patients can book
+          instantly.
+        </p>
+        <a id="direct-booking-link" class="button-link" href="#" hidden>
+          Open Google booking page
+        </a>
+
+        <h3>Patient privacy</h3>
+        <ul>
+          <li>Do not collect SSNs or sensitive health details on this page.</li>
+          <li>Use clinic email and calendar accounts only.</li>
+          <li>
+            Include your official privacy notice and emergency instructions.
+          </li>
+        </ul>
+      </aside>
+    </main>
+
+    <footer class="container footer">
+      <p>
+        © <span id="year"></span> Dr Vijay Chourdia Clinic. If this is a medical
+        emergency, call emergency services immediately.
+      </p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
