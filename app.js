@@ -56,14 +56,21 @@ form.addEventListener("submit", async (event) => {
   setStatus("Submitting your request...", "");
 
   try {
+    const payload = {
+      patientName: data.name,
+      patientEmail: data.email,
+      patientPhone: data.phone,
+      appointmentDate: data.date,
+      appointmentTime: data.time,
+      reason: [data.reason, data.notes].filter(Boolean).join("\n"),
+      startIso,
+      source: "clinic-site",
+    };
+
     const response = await fetch(CONFIG.appsScriptEndpoint, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        ...data,
-        startIso,
-        source: "clinic-site",
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
@@ -72,7 +79,12 @@ form.addEventListener("submit", async (event) => {
 
     const result = await response.json();
 
-    if (!result.success) {
+    if (result.status === "conflict") {
+      setStatus(result.message || "This time slot is already booked.", "error");
+      return;
+    }
+
+    if (result.status !== "success" && !result.success) {
       throw new Error(result.message || "Unable to create appointment.");
     }
 
