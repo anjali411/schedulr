@@ -11,6 +11,7 @@ const submitBtn = document.getElementById("submit-btn");
 const yearEl = document.getElementById("year");
 const directBookingLink = document.getElementById("direct-booking-link");
 const timeInput = document.getElementById("time");
+const timeOptions = document.getElementById("time-options");
 const slotOptions = document.getElementById("slot-options");
 const slotsHelp = document.getElementById("slots-help");
 const SLOT_INTERVAL_MINUTES = 10;
@@ -54,6 +55,20 @@ const minutesToTimeString = (totalMinutes) => {
   const hours = Math.floor(normalizedMinutes / 60);
   const minutes = normalizedMinutes % 60;
   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+};
+
+const populateTimeOptions = () => {
+  if (!timeOptions) {
+    return;
+  }
+
+  timeOptions.innerHTML = "";
+
+  for (let totalMinutes = 0; totalMinutes < 1440; totalMinutes += SLOT_INTERVAL_MINUTES) {
+    const option = document.createElement("option");
+    option.value = minutesToTimeString(totalMinutes);
+    timeOptions.appendChild(option);
+  }
 };
 
 const renderNearbySlots = (selectedTime) => {
@@ -112,6 +127,7 @@ timeInput.addEventListener("change", () => {
 timeInput.addEventListener("input", validateTimeStep);
 
 renderNearbySlots(timeInput.value);
+populateTimeOptions();
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
