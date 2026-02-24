@@ -60,3 +60,7 @@ python3 -m http.server 8080
 ```
 
 Then visit <http://localhost:8080>.
+
+## Git workflow note
+
+If a pull request shows merge conflicts after related work was already merged, create a fresh branch from the latest `main` and re-apply only the pending commits. This avoids carrying stale merge metadata into the new PR.
