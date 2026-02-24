@@ -69,6 +69,10 @@ h3 {
   margin-top: -0.25rem;
 }
 
+.slots-help {
+  margin: 0;
+}
+
 form {
   display: grid;
   gap: 0.65rem;
@@ -123,6 +127,28 @@ button:hover,
 
 #status.error {
   color: var(--error);
+}
+
+.slot-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-height: 2.5rem;
+}
+
+.slot-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+}
+
+.slot-chip.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
 }
 
 ul {
